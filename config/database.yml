@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: mino_db
+  port: 5432
+  user: postgres
+  password:
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: mino_development
+
+test:
+  <<: *default
+  database: mino_test
+
+production:
+  <<: *default
+  database: mino_production
+  username: mino
+  password: <%= ENV['MINO_DATABASE_PASSWORD'] %>
