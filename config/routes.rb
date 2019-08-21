@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  get '/personaldata', to: 'personaldata#index'
+  get '/personaldata/new', to: 'personal_data#new'
 end
