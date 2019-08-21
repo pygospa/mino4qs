@@ -36,7 +36,7 @@ RSpec.configure do |config|
 
   config.before(:each, type: :system, js: true) do
     driven_by :selenium_remote
-    host! "http://test:3001"
+    host! "http://mino_test:3001/"
   end
 
   config.include FactoryBot::Syntax::Methods

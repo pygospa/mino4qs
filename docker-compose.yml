@@ -16,7 +16,7 @@ services:
       - .:/srv/mino
 
   mino_db:
-    image: postgres:alpine
+    image: postgres:11.5-alpine
     ports:
       - "5432:5432"
     tty: true
@@ -35,7 +35,7 @@ services:
       - .:/srv/mino
 
   mino_selenium_chrome:
-    image: selenium/standalone-chrome
+    image: selenium/standalone-chrome:3.141.59-titanium
     ports:
       - "4444:4444"
     volumes:
@@ -43,7 +43,7 @@ services:
 
   mino_test:
     build: .
-    command: bundle exec rails -s -p 3001 -b '0.0.0.0' --pid=tmp/pids/test.pid
+    command: bundle exec rails s -p 3001 -b '0.0.0.0' --pid=tmp/pids/test.pid
     depends_on:
       - mino_db
     environment:
