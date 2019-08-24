@@ -1,7 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: mino_db
+  host: db
   port: 5432
   user: postgres
   password:
@@ -9,14 +9,14 @@ default: &default
 
 development:
   <<: *default
-  database: mino_development
+  database: mino4qs_development
 
 test:
   <<: *default
-  database: mino_test
+  database: mino4qs_test
 
 production:
   <<: *default
-  database: mino_production
-  username: mino
-  password: <%= ENV['MINO_DATABASE_PASSWORD'] %>
+  database: mino4qs_production
+  username: mino4qs
+  password: <%= ENV['MINO4QS_DATABASE_PASSWORD'] %>

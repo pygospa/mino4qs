@@ -1,51 +1,37 @@
 version: '3.5'
 
 services:
-
-  mino_app:
-    build: .
-    command: bundle exec rails s -p 3000 -b '0.0.0.0' --pid=tmp/pids/development.pid
-    depends_on:
-      - mino_db
-    environment:
-      - RAILS_ENV=development
-    ports:
-      - "3000:3000"
-    tty: true
-    volumes:
-      - .:/srv/mino
-
-  mino_db:
+  db:
     image: postgres:11.5-alpine
     ports:
       - "5432:5432"
     tty: true
     volumes:
-      - mino_db_vol:/var/lib/postgresql/data
+      - db_vol:/var/lib/postgresql/data
 
-  mino_guard:
+  guard:
     build: .
     command: bundle exec guard --no-bundler-warning --no-interactions
     depends_on:
-      - mino_test
-      - mino_selenium_chrome
-      - mino_db
+      - db
+      - selenium_chrome
+      - test
     tty: true
     volumes:
       - .:/srv/mino
 
-  mino_selenium_chrome:
+  selenium_chrome:
     image: selenium/standalone-chrome:3.141.59-titanium
     ports:
       - "4444:4444"
     volumes:
       - /dev/shm:/dev/shm
 
-  mino_test:
+  test:
     build: .
     command: bundle exec rails s -p 3001 -b '0.0.0.0' --pid=tmp/pids/test.pid
     depends_on:
-      - mino_db
+      - db
     environment:
       - RAILS_ENV=test
     ports:
@@ -54,6 +40,20 @@ services:
     volumes:
       - .:/srv/mino
 
+  webapp:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0' --pid=tmp/pids/development.pid
+    depends_on:
+      - db
+    environment:
+      - RAILS_ENV=development
+    image: mino4qs
+    ports:
+      - "3000:3000"
+    tty: true
+    volumes:
+      - .:/srv/mino4qs
+
 volumes:
-  mino_db_vol:
+  db_vol:
     driver: local

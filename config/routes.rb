@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  get '/personaldata/new', to: 'personal_data#new'
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
