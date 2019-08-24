@@ -16,6 +16,7 @@ services:
       - db
       - selenium_chrome
       - test
+    image: mino4qs_guard
     tty: true
     volumes:
       - .:/srv/mino
@@ -34,6 +35,7 @@ services:
       - db
     environment:
       - RAILS_ENV=test
+    image: mino4qs_guard
     ports:
       - "3001:3001"
     tty: true
@@ -47,7 +49,7 @@ services:
       - db
     environment:
       - RAILS_ENV=development
-    image: mino4qs
+    image: mino4qs_webapp
     ports:
       - "3000:3000"
     tty: true
