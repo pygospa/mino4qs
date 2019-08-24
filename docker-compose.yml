@@ -19,7 +19,7 @@ services:
     image: mino4qs
     tty: true
     volumes:
-      - .:/srv/mino
+      - .:/srv/mino4qs
 
   selenium_chrome:
     image: selenium/standalone-chrome:3.141.59-titanium
@@ -40,7 +40,7 @@ services:
       - "3001:3001"
     tty: true
     volumes:
-      - .:/srv/mino
+      - .:/srv/mino4qs
 
   webapp:
     build: .
