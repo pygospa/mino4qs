@@ -35,6 +35,6 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'database_cleaner'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.141.59'
   gem 'simplecov', require: false
 end

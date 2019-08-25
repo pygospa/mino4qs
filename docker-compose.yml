@@ -49,7 +49,7 @@ services:
       - db
     environment:
       - RAILS_ENV=development
-    image: mino4qs_webapp
+    image: mino4qs
     ports:
       - "3000:3000"
     tty: true
