@@ -1,4 +1,5 @@
 ENV['RAILS_ENV'] ||= 'test'
+require 'support/simplecov.rb'
 require 'support/screenshot_quickfix.rb'
 
 require File.expand_path('../../config/environment', __FILE__)

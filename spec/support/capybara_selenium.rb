@@ -5,7 +5,6 @@ selenium_url = "http://selenium_chrome:4444/wd/hub"
 Capybara.register_driver :selenium_remote do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     chromeOptions: { args: %w(ignore-certificate-errors text-type)},
-    #url: URI.parse(selenium_url)
   )
 
   Capybara::Selenium::Driver.new(
