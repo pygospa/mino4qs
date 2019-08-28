@@ -1,2 +1,3 @@
 =form_with model: @user, class: 'personal-data' do |form|
-  %br
+  =form.label :birthday
+  =form.text_field :birthday
