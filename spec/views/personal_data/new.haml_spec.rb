@@ -10,5 +10,10 @@ RSpec.describe 'personal_data/new.haml', type: :view do
     render
     expect(rendered).to have_field("birthday")
   end
+
+  it 'form contains a field to add gender' do
+    render
+    expect(render).to have_field("gender")
+  end
 end
 
