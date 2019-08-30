@@ -2,6 +2,7 @@
 # build-base+gcompat    for gem compilation
 # postgresql-dev	for pg gem
 # nodejs+tzdata		for rails
+# yarn                  for new Rails 6.0 webpacker asset management
 FROM ruby:2.6.3-alpine3.10 as Builder
 RUN apk add --no-cache build-base \
 		       gcompat \
