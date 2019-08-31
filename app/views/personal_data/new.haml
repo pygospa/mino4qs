@@ -1,5 +1,5 @@
 .container
-  =form_with model: @user, class: 'personal-data' do |form|
+  =form_with url: personal_data_path, class: 'personal-data' do |form|
     .form-group.row
       .col-sm-2
         =form.label :birthday, class: 'col-form-label'

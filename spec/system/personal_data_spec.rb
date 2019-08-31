@@ -4,7 +4,7 @@ require 'support/capybara_selenium.rb'
 RSpec.describe "Personal data", type: :system, js: true do
   scenario "is added by the user to the database and can be displayed afterwards" do
     # given
-    visit "/personal_data/index"
+    visit "/personal_data"
     expect(page).not_to have_text("35")
     expect(page).not_to have_text("male")
     expect(page).not_to have_text("168")
