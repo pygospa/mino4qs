@@ -1,5 +1,8 @@
 class PersonalDataController < ApplicationController
   def index
+    if PersonalData.count == 0
+      return
+    end
   end
 
   def new
