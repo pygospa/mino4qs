@@ -1,8 +1,20 @@
-=form_with model: @user, class: 'personal-data' do |form|
-  =form.label :birthday
-  =form.text_field :birthday
-  =form.label :gender
-  =form.text_field :gender
-  =form.label :height
-  =form.text_field :height
-  =form.submit 'Submit'
+.container
+  =form_with model: @user, class: 'personal-data' do |form|
+    .form-group.row
+      .col-sm-2
+        =form.label :birthday, class: 'col-form-label'
+      .col-sm-10
+        =form.text_field :birthday, class: 'form-control'
+    .form-group.row
+      .col-sm-2
+        =form.label :gender, class: 'col-form-label'
+      .col-sm-10
+        =form.text_field :gender, class: 'form-control'
+    .form-group.row
+      .col-sm-2
+        =form.label :height, class: 'col-form-label'
+      .col-sm-10
+        =form.text_field :height, class: 'form-control'
+    .form-group.row
+      .col-sm-1.offset-sm-2
+        =form.submit 'Submit', class: 'btn btn-primary'
