@@ -16,7 +16,7 @@ RSpec.describe "Personal data", type: :system, js: true do
     click_button "Submit"
     # then
     expect(page).to have_text "Personal data successfully recorded"
-    visit "/personal/index"
+    visit "/personal_data"
     expect(page).to have_text "35"
     expect(page).to have_text("male")
     expect(page).to have_text("168")
