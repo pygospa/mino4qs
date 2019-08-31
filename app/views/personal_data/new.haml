@@ -1,4 +1,6 @@
 .container
+  -flash.each do |key, value|
+    %div{class: "alert alert-#{key}"}= value
   =form_with url: personal_data_path, class: 'personal-data' do |form|
     .form-group.row
       .col-sm-2
