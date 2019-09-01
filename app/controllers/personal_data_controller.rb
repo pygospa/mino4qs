@@ -14,6 +14,7 @@ class PersonalDataController < ApplicationController
   end
 
   def new
+    @personal_data = PersonalData.new
   end
 
   def create
