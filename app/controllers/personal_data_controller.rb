@@ -3,6 +3,13 @@ class PersonalDataController < ApplicationController
     if PersonalData.count == 0
       return
     end
+
+    if PersonalData.count == 1
+      redirect_to personal_datum_path(PersonalData.first.id)
+    end
+  end
+
+  def show
   end
 
   def new
