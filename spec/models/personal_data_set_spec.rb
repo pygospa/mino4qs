@@ -30,26 +30,32 @@ RSpec.describe PersonalDataSet, type: :model do
   end
 
   context '#height' do
-    it "with no params returns height in centimeters" do
+
+    before(:each) do
       subject.height = '168'
+    end
+
+    it "with no params returns height in centimeters" do
       expect(subject.height).to eq('168')
     end
 
     it "with 'unit: \"centimeters\"' returns height in cm" do
-      subject.height = '168'
       expect(subject.height(unit: 'centimeters')).to eq('168')
     end
 
-    it "with 'to_string: true' will return height in cm w/ unit"
-    it "with 'unit: \"centimeters\", to_string: true' returns height in cm w/ unit"
-    it "with 'unit: \"inches\"' returns height in in"
-    it "with 'unit: \"inches\", to_string: true' returns height in in w/ unit"
-    it "with 'unit: \"feet-and-inches\"' returns height in ft-in"
-    it "with 'unit: \"feet-and-inches\", to_string: true' returns height in ft-in w/ unit"
+    it "with 'return_unit: true' will return height in cm w/ unit" do
+      expect(subject.height(unit: 'centimeters', return_unit: true)).to eq('168 cm')
+    end
+
+#    it "with 'unit: \"centimeters\", return_unit: true' returns height in cm w/ unit" do
+#    it "with 'unit: \"inches\"' returns height in in"
+#    it "with 'unit: \"inches\", return_unit: true' returns height in in w/ unit"
+#    it "with 'unit: \"feet-and-inches\"' returns height in ft-in"
+#    it "with 'unit: \"feet-and-inches\", return_unit: true' returns height in ft-in w/ unit"
   end
 
-  context '#age' do
-    it "will return the current age for a given birthday"
-  end
+#  context '#age' do
+#    it "will return the current age for a given birthday"
+#  end
 
 end
