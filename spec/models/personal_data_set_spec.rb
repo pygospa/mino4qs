@@ -55,8 +55,10 @@ RSpec.describe PersonalDataSet, type: :model do
       expect(subject.height(unit: 'inches')).to eq('66.14')
     end
 
+    it "with 'unit: \"inches\", return_unit: true' returns height in in w/ unit" do
+      expect(subject.height(unit: 'inches', return_unit: true)).to eq('66.14 in')
+    end
 
-#    it "with 'unit: \"inches\", return_unit: true' returns height in in w/ unit"
 #    it "with 'unit: \"feet-and-inches\"' returns height in ft-in"
 #    it "with 'unit: \"feet-and-inches\", return_unit: true' returns height in ft-in w/ unit"
   end

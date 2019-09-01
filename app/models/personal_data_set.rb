@@ -6,10 +6,10 @@ class PersonalDataSet < ApplicationRecord
   def height(unit: 'centimeters', return_unit: false)
     case unit
     when 'centimeters'
-      return "#{@height} cm" if return_unit
-      return @height
+      return return_unit ? "#{@height} cm" : @height
     when 'inches'
-      return "#{(@height.to_i / 2.54).round(2)}"
+      height_in = (@height.to_i / 2.54).round(2)
+      return return_unit ? "#{height_in} in" : "#{height_in}"
     end
   end
 
