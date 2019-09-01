@@ -30,7 +30,11 @@ RSpec.describe PersonalDataSet, type: :model do
   end
 
   context '#height' do
-    it "with no params returns height in centimeters"
+    it "with no params returns height in centimeters" do
+      subject.height = '168'
+      expect(subject.height).to eq('168')
+    end
+
     it "with 'in: \"centimeters\"' returns height in cm"
     it "with 'to_string: true' will return height in cm w/ unit"
     it "with 'in: \"centimeters\", to_string: true' returns height in cm w/ unit"
