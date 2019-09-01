@@ -10,6 +10,7 @@ class PersonalDataController < ApplicationController
   end
 
   def show
+    @personal_data = PersonalData.find(params[:id])
   end
 
   def new
