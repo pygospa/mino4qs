@@ -41,35 +41,35 @@ RSpec.describe PersonalDataSet, type: :model do
       expect(subject.height(unit: 'centimeters')).to eq(168)
     end
 
-    it "with 'return_unit: true' will return height in cm w/ unit" do
-      expect(subject.height(return_unit: true)).to eq('168 cm')
+    it "with 'with_symbol: true' will return height in cm w/ unit" do
+      expect(subject.height(with_symbol: true)).to eq('168 cm')
     end
 
-    it "with 'unit: \"centimeters\", return_unit: true' returns height in cm w/ unit" do
-      expect(subject.height(unit: 'centimeters', return_unit: true)).to eq('168 cm')
+    it "with 'unit: \"centimeters\", with_symbol: true' returns height in cm w/ unit" do
+      expect(subject.height(unit: 'centimeters', with_symbol: true)).to eq('168 cm')
     end
 
     it "with 'unit: \"inches\"' returns height in in" do
       expect(subject.height(unit: 'inches')).to eq(66.14)
     end
 
-    it "with 'unit: \"inches\", return_unit: true' returns height in in w/ unit" do
-      expect(subject.height(unit: 'inches', return_unit: true)).to eq('66.14 in')
+    it "with 'unit: \"inches\", with_symbol: true' returns height in in w/ unit" do
+      expect(subject.height(unit: 'inches', with_symbol: true)).to eq('66.14 in')
     end
 
     it "with 'unit: \"feet\"' returns height in ft" do
       expect(subject.height(unit: 'feet')).to eq(5.51)
     end
 
-    it "with 'unit: \"feet\", return_unit: true' returns height in ft w/ unit" do
-      expect(subject.height(unit: 'feet', return_unit: true)).to eq("5.51 ft")
+    it "with 'unit: \"feet\", with_symbol: true' returns height in ft w/ unit" do
+      expect(subject.height(unit: 'feet', with_symbol: true)).to eq("5.51 ft")
     end
 
     it "with 'unit: \"feet-and-inches\"' returns height in ft-in w/ unit" do
       expect(subject.height(unit: 'feet-and-inches')).to eq("5 ft 6 in")
     end
 
-    it "with 'unit: \"feet-and-inches\", return_unit: true' returns height in ft-in w/ unit" do
+    it "with 'unit: \"feet-and-inches\", with_symbol: true' returns height in ft-in w/ unit" do
       expect(subject.height(unit: 'feet-and-inches')).to eq("5 ft 6 in")
     end
   end
