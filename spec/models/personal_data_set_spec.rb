@@ -52,7 +52,7 @@ RSpec.describe PersonalDataSet, type: :model do
     end
 
     it "with 'unit: \"inches\"' returns height in in" do
-      expect(subject.height(unit: 'inches')).to eq('66.1417')
+      expect(subject.height(unit: 'inches')).to eq('66.14')
     end
 
 
