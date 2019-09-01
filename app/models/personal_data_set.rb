@@ -1,5 +1,5 @@
 class PersonalDataSet < ApplicationRecord
-  attr_accessor :height
+  attr_accessor :gender, :height
 
-  validates :height, presence: true
+  validates :gender, :height, presence: true
 end
