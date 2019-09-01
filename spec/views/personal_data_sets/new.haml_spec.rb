@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'personal_data/new.haml', type: :view do
-  it 'displays from for personal data' do
-    expect(render).to have_css("form.personal-data")
+RSpec.describe 'personal_data_sets/new.haml', type: :view do
+  it 'displays from for PersonalDataSet' do
+    expect(render).to have_css("form.personal-data-set")
   end
 
   context 'form' do

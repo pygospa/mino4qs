@@ -1,0 +1,2 @@
+class PersonalDataSet < ApplicationRecord
+end

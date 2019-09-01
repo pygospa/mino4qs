@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PersonalData, type: :model do
+RSpec.describe PersonalDataSet, type: :model do
   it "is valid with valid attributes"
   it "is not valid without birthday"
   it "is not valid without gender"
