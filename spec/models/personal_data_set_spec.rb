@@ -44,11 +44,18 @@ RSpec.describe PersonalDataSet, type: :model do
     end
 
     it "with 'return_unit: true' will return height in cm w/ unit" do
+      expect(subject.height(return_unit: true)).to eq('168 cm')
+    end
+
+    it "with 'unit: \"centimeters\", return_unit: true' returns height in cm w/ unit" do
       expect(subject.height(unit: 'centimeters', return_unit: true)).to eq('168 cm')
     end
 
-#    it "with 'unit: \"centimeters\", return_unit: true' returns height in cm w/ unit" do
-#    it "with 'unit: \"inches\"' returns height in in"
+    it "with 'unit: \"inches\"' returns height in in" do
+      expect(subject.height(unit: 'inches')).to eq('66.1417')
+    end
+
+
 #    it "with 'unit: \"inches\", return_unit: true' returns height in in w/ unit"
 #    it "with 'unit: \"feet-and-inches\"' returns height in ft-in"
 #    it "with 'unit: \"feet-and-inches\", return_unit: true' returns height in ft-in w/ unit"
