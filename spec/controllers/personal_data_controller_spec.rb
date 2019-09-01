@@ -50,6 +50,11 @@ RSpec.describe PersonalDataController, type: :controller do
       post :create, params: attributes_for(:personal_data)
       expect(response).to redirect_to action: :new
     end
+
+    it "creates a new set of personal_data" do
+      expect(post :create, params: attributes_for(:personal_data))
+        .to change(PersonalData, :count).by(1)
+    end
   end
 
 end
