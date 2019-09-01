@@ -35,13 +35,17 @@ RSpec.describe PersonalDataSet, type: :model do
       expect(subject.height).to eq('168')
     end
 
-    it "with 'in: \"centimeters\"' returns height in cm"
+    it "with 'unit: \"centimeters\"' returns height in cm" do
+      subject.height = '168'
+      expect(subject.height(unit: 'centimeters')).to eq('168')
+    end
+
     it "with 'to_string: true' will return height in cm w/ unit"
-    it "with 'in: \"centimeters\", to_string: true' returns height in cm w/ unit"
-    it "with 'in: \"inches\"' returns height in in"
-    it "with 'in: \"inches\", to_string: true' returns height in in w/ unit"
-    it "with 'in: \"feet-and-inches\"' returns height in ft-in"
-    it "with 'in: \"feet-and-inches\", to_string: true' returns height in ft-in w/ unit"
+    it "with 'unit: \"centimeters\", to_string: true' returns height in cm w/ unit"
+    it "with 'unit: \"inches\"' returns height in in"
+    it "with 'unit: \"inches\", to_string: true' returns height in in w/ unit"
+    it "with 'unit: \"feet-and-inches\"' returns height in ft-in"
+    it "with 'unit: \"feet-and-inches\", to_string: true' returns height in ft-in w/ unit"
   end
 
   context '#age' do
