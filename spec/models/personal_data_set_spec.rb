@@ -1,22 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe PersonalDataSet, type: :model do
+
+  subject do
+    PersonalDataSet.new
+  end
+
   it "is valid with valid attributes"
   it "is not valid without birthday"
 
   it "is not valid without gender" do
-    personal_data_set = PersonalDataSet.new
-    personal_data_set.gender = ''
-    personal_data_set.valid?
-    expect(personal_data_set.errors[:gender]).to include("can't be blank")
+    subject.gender = ''
+    subject.valid?
+    expect(subject.errors[:gender]).to include("can't be blank")
   end
 
-
   it "is not valid without height" do
-    personal_data_set = PersonalDataSet.new
-    personal_data_set.height = ''
-    personal_data_set.valid?
-    expect(personal_data_set.errors[:height]).to include("can't be blank")
+    subject.height = ''
+    subject.valid?
+    expect(subject.errors[:height]).to include("can't be blank")
   end
 
 
