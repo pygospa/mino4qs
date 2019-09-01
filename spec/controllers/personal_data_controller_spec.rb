@@ -24,16 +24,6 @@ RSpec.describe PersonalDataController, type: :controller do
   end
 
   describe "GET #show" do
-    it "renders personal_data/show" do
-      personal_data = double("PersonalData", id: 1, bithday: '1984-03-10',
-                             height: '168', gender: 'male')
-      expect(PersonalData).to receive(:find).with('1').and_return(personal_data)
-
-      get :show, params: {id: 1}
-
-      expect(response).to render_template :show
-    end
-
     it "assigns the requested personal data to @personal_data" do
       personal_data = double("PersonalData", id: 1, bithday: '1984-03-10',
                              height: '168', gender: 'male')
