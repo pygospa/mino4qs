@@ -6,7 +6,10 @@ RSpec.describe PersonalDataSet, type: :model do
     PersonalDataSet.new
   end
 
-  it "is valid with valid attributes"
+  it "is valid with valid attributes" do
+    subject = create(:personal_data_set)
+    expect(subject.valid?).to be_truthy
+  end
 
   it "is not valid without birthday" do
     subject.birthday = ''
@@ -25,7 +28,6 @@ RSpec.describe PersonalDataSet, type: :model do
     subject.valid?
     expect(subject.errors[:height]).to include("can't be blank")
   end
-
 
   context '#height' do
     it "with no params returns height in centimeters"
