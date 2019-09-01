@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe PersonalDataSet, type: :model do
-
   subject do
     PersonalDataSet.new
   end
@@ -30,17 +29,16 @@ RSpec.describe PersonalDataSet, type: :model do
   end
 
   context '#height' do
-
     before(:each) do
       subject.height = '168'
     end
 
     it "with no params returns height in centimeters" do
-      expect(subject.height).to eq('168')
+      expect(subject.height).to eq(168)
     end
 
     it "with 'unit: \"centimeters\"' returns height in cm" do
-      expect(subject.height(unit: 'centimeters')).to eq('168')
+      expect(subject.height(unit: 'centimeters')).to eq(168)
     end
 
     it "with 'return_unit: true' will return height in cm w/ unit" do
@@ -52,19 +50,31 @@ RSpec.describe PersonalDataSet, type: :model do
     end
 
     it "with 'unit: \"inches\"' returns height in in" do
-      expect(subject.height(unit: 'inches')).to eq('66.14')
+      expect(subject.height(unit: 'inches')).to eq(66.14)
     end
 
     it "with 'unit: \"inches\", return_unit: true' returns height in in w/ unit" do
       expect(subject.height(unit: 'inches', return_unit: true)).to eq('66.14 in')
     end
 
-#    it "with 'unit: \"feet-and-inches\"' returns height in ft-in"
-#    it "with 'unit: \"feet-and-inches\", return_unit: true' returns height in ft-in w/ unit"
+    it "with 'unit: \"feet\"' returns height in ft" do
+      expect(subject.height(unit: 'feet')).to eq(5.51)
+    end
+
+    it "with 'unit: \"feet\", return_unit: true' returns height in ft w/ unit" do
+      expect(subject.height(unit: 'feet', return_unit: true)).to eq("5.51 ft")
+    end
+
+    it "with 'unit: \"feet-and-inches\"' returns height in ft-in w/ unit" do
+      expect(subject.height(unit: 'feet-and-inches')).to eq("5 ft 6 in")
+    end
+
+    it "with 'unit: \"feet-and-inches\", return_unit: true' returns height in ft-in w/ unit" do
+      expect(subject.height(unit: 'feet-and-inches')).to eq("5 ft 6 in")
+    end
   end
 
-#  context '#age' do
-#    it "will return the current age for a given birthday"
-#  end
-
+  context '#age' do
+    it "will return the current age for a given birthday"
+  end
 end
