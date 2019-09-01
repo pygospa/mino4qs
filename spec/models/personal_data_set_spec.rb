@@ -7,7 +7,12 @@ RSpec.describe PersonalDataSet, type: :model do
   end
 
   it "is valid with valid attributes"
-  it "is not valid without birthday"
+
+  it "is not valid without birthday" do
+    subject.birthday = ''
+    subject.valid?
+    expect(subject.errors[:birthday]).to include("can't be blank")
+  end
 
   it "is not valid without gender" do
     subject.gender = ''
