@@ -4,7 +4,14 @@ RSpec.describe PersonalDataSet, type: :model do
   it "is valid with valid attributes"
   it "is not valid without birthday"
   it "is not valid without gender"
-  it "is not valid without height"
+
+  it "is not valid without height" do
+    personal_data_set = PersonalDataSet.new
+    personal_data_set.height = ''
+    personal_data_set.valid?
+    expect(personal_data_set.errors[:height]).to include("can't be blank")
+  end
+
 
   context '#height' do
     it "with no params returns height in centimeters"
