@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe PersonalDataSetsController, type: :controller do
 
   describe "GET #index" do
-    it "with no PersonalDataSet recorded renders personal_data_sets/index" do
+    it "w/ no PersonalDataSet saved renders personal_data_sets/index" do
       expect(PersonalDataSet).to receive(:count).and_return(0)
 
       get :index
@@ -11,7 +11,7 @@ RSpec.describe PersonalDataSetsController, type: :controller do
       expect(response).to render_template :index
     end
 
-    it "with PersonalDataSet recorded redirects to PersonalDataSetsController#show" do
+    it "w/ PersonalDataSet saved redirects to PersonalDataSetsController#show" do
       personal_data_set = double("PersonalDataSet")
       expect(personal_data_set).to receive(:id).and_return(1)
       expect(PersonalDataSet).to receive(:count).and_return(1).twice

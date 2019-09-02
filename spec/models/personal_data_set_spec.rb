@@ -1,31 +1,60 @@
 require 'rails_helper'
 
 RSpec.describe PersonalDataSet, type: :model do
+
   subject do
     PersonalDataSet.new
   end
 
-  it "is valid with valid attributes" do
-    subject = create(:personal_data_set)
-    expect(subject.valid?).to be_truthy
+  context "#valid? returns true, if it" do
+    it "is valid with valid attributes" do
+      subject = create(:personal_data_set)
+      expect(subject.valid?).to be_truthy
+    end
   end
 
-  it "is not valid without birthday" do
-    subject.birthday = ''
-    subject.valid?
-    expect(subject.errors[:birthday]).to include("can't be blank")
-  end
+  context "#valid? returns false, if it" do
+    it "has no @birthday" do
+      subject.birthday = ''
+      subject.valid?
+      expect(subject.errors[:birthday]).to include("can't be blank")
+    end
 
-  it "is not valid without gender" do
-    subject.gender = ''
-    subject.valid?
-    expect(subject.errors[:gender]).to include("can't be blank")
-  end
+    it 'has non-date value for @birthday' do
+      subject.birthday = 'elephant'
+      subject.valid?
+      expect(subject.errors[:birthday]).to include('blub')
+    end
 
-  it "is not valid without height" do
-    subject.height = ''
-    subject.valid?
-    expect(subject.errors[:height]).to include("can't be blank")
+    it "has no @gender" do
+      subject.gender = ''
+      subject.valid?
+      expect(subject.errors[:gender]).to include("can't be blank")
+    end
+
+    it "has other @gender than 'male' or 'female'" do
+      subject.gender = 'elephant'
+      subject.valid?
+      expect(subject.errors[:gender]).to include("elephant is not a valid gender")
+    end
+
+    it "has no @height" do
+      subject.height = ''
+      subject.valid?
+      expect(subject.errors[:height]).to include("can't be blank")
+    end
+
+    it "has zero @height" do
+      subject.height = '0'
+      subject.valid?
+      expect(subject.errors[:height]).to include("must be greater than 0")
+    end
+
+    it "has a negative @height" do
+      subject.height = '-100'
+      subject.valid?
+      expect(subject.errors[:height]).to include("must be greater than 0")
+    end
   end
 
   context '#height' do
