@@ -104,6 +104,10 @@ RSpec.describe PersonalDataSet, type: :model do
   end
 
   context '#age' do
-    it "will return the current age for a given birthday"
+    it "will return the current age for a given birthday" do
+      subject.height = "1984-03-10"
+      expect(subject.age).to eq("35")
+    end
   end
+
 end
