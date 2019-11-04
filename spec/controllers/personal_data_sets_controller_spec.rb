@@ -41,11 +41,13 @@ RSpec.describe PersonalDataSetsController, type: :controller do
     it "assings new PersonalDataSet instance to @personal_data_set" do
       get :new
 
+      personal_data_set = @controller.instance_variable_get(:@personal_data_set)
+
       expect(assigns(:personal_data_set)).to be_a(PersonalDataSet)
-      expect(:personal_data_set.birthday).to eq(nil)
-      expect(:personal_data_set.gender).to eq(nil)
-      expect(:personal_data_set.height).to eq(nil)
-      expect(:personal_data_set.id).to eq(nil)
+      expect(personal_data_set.birthday).to eq(nil)
+      expect(personal_data_set.gender).to eq(nil)
+      expect(personal_data_set.height).to eq(nil)
+      expect(personal_data_set.id).to eq(nil)
     end
   end
 
@@ -56,8 +58,8 @@ RSpec.describe PersonalDataSetsController, type: :controller do
     end
 
     it "safes a new set of PersonalDataSet to the DB" do
-      expect(post :create, params: attributes_for(:personal_data_set))
-        .to change(PersonalDataSet, :count).by(1)
+      expect{ post :create, params: attributes_for(:personal_data_set) }
+        .to change{ PersonalDataSet.count }.by(1)
     end
   end
 
