@@ -2,8 +2,14 @@ class PersonalDataSet < ApplicationRecord
   attr_accessor :birthday, :gender, :height
 
   validates :birthday, :gender, :height, presence: true
-  validates :gender, inclusion: { in: %w(male female),
-                                  message: "%{value} is not a valid gender"}
+  validates :birthday, date: true
+  validates :birthday, date: {
+    before: Proc.new { Time.now - 17.years },
+    message: "is not yet born or a minor"
+  }
+  validates :gender, inclusion: {
+    in: %w(male female), message: "%{value} is not a valid gender"
+  }
   validates :height, numericality: { greater_than: 0 }
 
   def height(unit: 'centimeters', with_symbol: false)

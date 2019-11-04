@@ -23,7 +23,19 @@ RSpec.describe PersonalDataSet, type: :model do
     it 'has non-date value for @birthday' do
       subject.birthday = 'elephant'
       subject.valid?
-      expect(subject.errors[:birthday]).to include('blub')
+      expect(subject.errors[:birthday]).to include('is not a date')
+    end
+
+    it 'has a future @birthday date' do
+      subject.birthday = DateTime.tomorrow
+      subject.valid?
+      expect(subject.errors[:birthday]).to include('is not yet born or a minor')
+    end
+
+    it 'has the birthday of a minor' do
+      subject.birthday = DateTime.now - 1.year
+      subject.valid?
+      expect(subject.errors[:birthday]).to include('is not yet born or a minor')
     end
 
     it "has no @gender" do
