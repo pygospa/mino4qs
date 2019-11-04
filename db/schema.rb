@@ -10,12 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_142316) do
+ActiveRecord::Schema.define(version: 2019_11_04_141904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "personal_data_sets", force: :cascade do |t|
+    t.date "birthday"
+    t.string "gender"
+    t.integer "height"
   end
 
 end
