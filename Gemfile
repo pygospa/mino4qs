@@ -6,6 +6,7 @@ ruby '2.6.3'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap', '~> 4.3.1'
 gem 'coffee-rails', '~> 5.0.0'
+gem 'date_validator'
 gem "haml-rails", "~> 2.0"
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
