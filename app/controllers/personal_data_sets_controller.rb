@@ -18,7 +18,12 @@ class PersonalDataSetsController < ApplicationController
   end
 
   def create
-    flash[:success] = "Personal data successfully recorded"
-    redirect_to new_personal_data_set_path
+    @personal_data_set = PersonalDataSet.new(params[:personal_data_set])
+    if @personal_data_set.save
+      flash[:success] = "Personal data successfully recorded"
+      redirect_to new_personal_data_set_path
+    else
+      render "new"
+    end
   end
 end

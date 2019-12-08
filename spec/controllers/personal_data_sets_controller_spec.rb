@@ -52,10 +52,10 @@ RSpec.describe PersonalDataSetsController, type: :controller do
   end
 
   describe "POST #create" do
-    it "redirects to #new action" do
-      post :create, params: attributes_for(:personal_data_set)
-      expect(response).to redirect_to action: :new
-    end
+    #it "redirects to #new action" do
+    #  post :create, params: attributes_for(:personal_data_set)
+    #  expect(response).to redirect_to action: :new
+    #end
 
     it "safes a new set of PersonalDataSet to the DB" do
       expect{ post :create, params: attributes_for(:personal_data_set) }
