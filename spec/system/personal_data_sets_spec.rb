@@ -12,9 +12,9 @@ RSpec.describe "PersonalDataSet", type: :system, js: true do
     expect(page).not_to have_text("168")
     # when
     visit "/personal_data_sets/new"
-    fill_in "birthday", with: "1984-03-10"
-    fill_in "gender", with: "male"
-    fill_in "height", with: "168"
+    fill_in "personal_data_set[birthday]", with: "03/10/1984"
+    fill_in "personal_data_set[gender]", with: "male"
+    fill_in "personal_data_set[height]", with: "168"
     click_button "Submit"
     # then
     expect(page).to have_text "Personal data successfully recorded"

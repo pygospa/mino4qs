@@ -3,8 +3,5 @@
 %p Gender:
 =@personal_data_set.gender
 %p Height:
-=@personal_data_set.height(in: 'meters', as_string: true)
-%p Height:
-=@personal_data_set.height(in: 'feet-and-inches', as_string: true)
-%p Height:
-=@personal_data_set.height(in: 'inches', as_string: true)
+=@personal_data_set.height
+=link_to 'Edit personal data', edit_personal_data_set_path(@personal_data_set)

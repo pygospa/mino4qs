@@ -1,12 +1,12 @@
 .container
   -flash.each do |key, value|
     %div{class: "alert alert-#{key}"}= value
-  =form_with url: personal_data_sets_path, class: 'personal-data-set' do |form|
+  =form_with model: @personal_data_set, class: 'personal-data-set' do |form|
     .form-group.row
       .col-sm-2
         =form.label :birthday, class: 'col-form-label'
       .col-sm-10
-        =form.text_field :birthday, class: 'form-control'
+        =form.date_field :birthday, class: 'form-control'
     .form-group.row
       .col-sm-2
         =form.label :gender, class: 'col-form-label'

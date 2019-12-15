@@ -14,7 +14,7 @@ RSpec.describe PersonalDataSetsController, type: :controller do
     it "w/ PersonalDataSet saved redirects to PersonalDataSetsController#show" do
       personal_data_set = double("PersonalDataSet")
       expect(personal_data_set).to receive(:id).and_return(1)
-      expect(PersonalDataSet).to receive(:count).and_return(1).twice
+      expect(PersonalDataSet).to receive(:count).and_return(1)
       expect(PersonalDataSet).to receive(:first).and_return(personal_data_set)
 
       get :index
@@ -58,8 +58,9 @@ RSpec.describe PersonalDataSetsController, type: :controller do
     #end
 
     it "safes a new set of PersonalDataSet to the DB" do
-      expect{ post :create, params: attributes_for(:personal_data_set) }
-        .to change{ PersonalDataSet.count }.by(1)
+      expect{ post :create,
+              params: { personal_data_set: attributes_for(:personal_data_set) }
+      }.to change{ PersonalDataSet.count }.by(1)
     end
   end
 

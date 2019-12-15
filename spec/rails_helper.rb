@@ -2,6 +2,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'support/simplecov.rb'
 require 'support/screenshot_quickfix.rb'
 require 'support/factory_bot.rb'
+require 'support/database_cleaner.rb'
 
 require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
