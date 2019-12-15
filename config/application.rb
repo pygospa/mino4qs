@@ -31,5 +31,10 @@ module Mino4qs
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # TODO: Instead of changing timezone for app, change it per user:
+    # https://thoughtbot.com/blog/its-about-time-zones
+    config.time_zone = 'UTC'
+    config.active_record.default_timezone = :utc
   end
 end

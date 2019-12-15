@@ -1,126 +1,109 @@
 require 'rails_helper'
 
 RSpec.describe PersonalDataSet, type: :model do
+  let(:subject)     { FactoryBot.create(:personal_data_set) }
+  let(:blank_error) { "can't be blank" }
 
-  subject do
-    PersonalDataSet.new
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
   end
 
-  context "#valid? returns true, if it" do
-    it "is valid with valid attributes" do
-      subject = create(:personal_data_set)
-      expect(subject.valid?).to be_truthy
+  describe '#birthday' do
+    let(:date_error)  { 'is not a date, in future, or a minor' }
+
+    it 'is required' do
+      subject.birthday = nil
+      expect(subject).to_not be_valid
+      expect(subject.errors[:birthday]).to include(blank_error)
     end
-  end
 
-  context "#valid? returns false, if it" do
-    it "has no @birthday" do
+    it 'cannot be blank' do
       subject.birthday = ''
-      subject.valid?
-      expect(subject.errors[:birthday]).to include("can't be blank")
+      expect(subject).to_not be_valid
+      expect(subject.errors[:birthday]).to include(blank_error)
     end
 
-    it 'has non-date value for @birthday' do
+    it 'is of type "Date"' do
       subject.birthday = 'elephant'
-      subject.valid?
-      expect(subject.errors[:birthday]).to include('is not a date')
+      expect(subject).to_not be_valid
+      expect(subject.errors[:birthday]).to include(date_error)
     end
 
-    it 'has a future @birthday date' do
+    it 'cannot be in the future' do
       subject.birthday = DateTime.tomorrow
-      subject.valid?
-      expect(subject.errors[:birthday]).to include('is not yet born or a minor')
+      expect(subject).to_not be_valid
+      expect(subject.errors[:birthday]).to include(date_error)
     end
 
-    it 'has the birthday of a minor' do
+    it 'cannot be younger than 18 years' do
       subject.birthday = DateTime.now - 1.year
-      subject.valid?
-      expect(subject.errors[:birthday]).to include('is not yet born or a minor')
-    end
-
-    it "has no @gender" do
-      subject.gender = ''
-      subject.valid?
-      expect(subject.errors[:gender]).to include("can't be blank")
-    end
-
-    it "has other @gender than 'male' or 'female'" do
-      subject.gender = 'elephant'
-      subject.valid?
-      expect(subject.errors[:gender]).to include("elephant is not a valid gender")
-    end
-
-#    it "has no @height" do
-#      subject.height = ''
-#      subject.valid?
-#      expect(subject.errors[:height]).to include("can't be blank")
-#    end
-
-    it "has zero @height" do
-      subject.height = '0'
-      subject.valid?
-      expect(subject.errors[:height]).to include("must be greater than 0")
-    end
-
-    it "has a negative @height" do
-      subject.height = '-100'
-      subject.valid?
-      expect(subject.errors[:height]).to include("must be greater than 0")
+      expect(subject).to_not be_valid
+      expect(subject.errors[:birthday]).to include(date_error)
     end
   end
 
-#  context '#height' do
-#    before(:each) do
-#      subject.height = '168'
-#    end
-#
-#    it "with no params returns height in centimeters" do
-#      expect(subject.height).to eq(168)
-#    end
-#
-#    it "with 'unit: \"centimeters\"' returns height in cm" do
-#      expect(subject.height(unit: 'centimeters')).to eq(168)
-#    end
-#
-#    it "with 'with_symbol: true' will return height in cm w/ unit" do
-#      expect(subject.height(with_symbol: true)).to eq('168 cm')
-#    end
-#
-#    it "with 'unit: \"centimeters\", with_symbol: true' returns height in cm w/ unit" do
-#      expect(subject.height(unit: 'centimeters', with_symbol: true)).to eq('168 cm')
-#    end
-#
-#    it "with 'unit: \"inches\"' returns height in in" do
-#      expect(subject.height(unit: 'inches')).to eq(66.14)
-#    end
-#
-#    it "with 'unit: \"inches\", with_symbol: true' returns height in in w/ unit" do
-#      expect(subject.height(unit: 'inches', with_symbol: true)).to eq('66.14 in')
-#    end
-#
-#    it "with 'unit: \"feet\"' returns height in ft" do
-#      expect(subject.height(unit: 'feet')).to eq(5.51)
-#    end
-#
-#    it "with 'unit: \"feet\", with_symbol: true' returns height in ft w/ unit" do
-#      expect(subject.height(unit: 'feet', with_symbol: true)).to eq("5.51 ft")
-#    end
-#
-#    it "with 'unit: \"feet-and-inches\"' returns height in ft-in w/ unit" do
-#      expect(subject.height(unit: 'feet-and-inches')).to eq("5 ft 6 in")
-#    end
-#
-#    it "with 'unit: \"feet-and-inches\", with_symbol: true' returns height in ft-in w/ unit" do
-#      expect(subject.height(unit: 'feet-and-inches')).to eq("5 ft 6 in")
-#    end
-#  end
+  describe '#gender' do
+    let(:gender_error) { 'elephant is not a valid gender' }
 
-  context '#age' do
-    it "will return the current age for a given birthday" do
-      allow(Time.zone).to receive(:now).and_return(Time.new(2019, 5, 16, 0, 0 ,0))
-      subject.birthday = "1980-02-26"
+    it 'is required' do
+      subject.gender = nil
+      expect(subject).to_not be_valid
+      expect(subject.errors[:gender]).to include(blank_error)
+    end
+
+    it 'cannot be blank' do
+      subject.gender = ''
+      expect(subject).to_not be_valid
+      expect(subject.errors[:gender]).to include(blank_error)
+    end
+
+    it 'has only the values "male" or "female"' do
+      subject.gender = 'elephant'
+      expect(subject).to_not be_valid
+      expect(subject.errors[:gender]).to include(gender_error)
+    end
+  end
+
+  describe '#height' do
+    let(:height_too_small_error) { 'must be greater than 100' }
+    let(:height_too_large_error) { 'must be less than 300' }
+
+    it 'is required' do
+      subject.height = nil
+      expect(subject).to_not be_valid
+      expect(subject.errors[:height]).to include(blank_error)
+    end
+
+    it 'cannot be blank' do
+      subject.height = ''
+      expect(subject).to_not be_valid
+      expect(subject.errors[:height]).to include(blank_error)
+    end
+
+    it 'cannot be below 100' do
+      subject.height = '0'
+      expect(subject).to_not be_valid
+      expect(subject.errors[:height]).to include(height_too_small_error)
+    end
+
+    it 'cannot be negative' do
+      subject.height = '-100'
+      expect(subject).to_not be_valid
+      expect(subject.errors[:height]).to include(height_too_small_error)
+    end
+
+    it 'cannot be greater than 300 cm' do
+      subject.height = '500'
+      expect(subject).to_not be_valid
+      expect(subject.errors[:height]).to include(height_too_large_error)
+    end
+  end
+
+  describe '#age' do
+    it 'returns the current age' do
+      travel_to Time.new(2019, 5, 16, 0, 0, 0)
+      subject.birthday = '1980-02-26'
       expect(subject.age).to eq(39)
     end
   end
-
 end
