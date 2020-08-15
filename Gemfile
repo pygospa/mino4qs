@@ -34,14 +34,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.1'
   gem 'solargraph'
   gem 'webdrivers', '~> 3.0'
+  gem 'simplecov'
 end
 
-
-#gem 'date_validator'
-#
-
-
-#group :test do
-#  gem 'database_cleaner'
-#  gem 'simplecov', require: false
-#end
