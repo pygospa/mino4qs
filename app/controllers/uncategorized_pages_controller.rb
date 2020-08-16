@@ -1,4 +1,4 @@
-class UncategorizedPagesController < ActionController::Base
+class UncategorizedPagesController < ApplicationController
   def root
   end
 end
