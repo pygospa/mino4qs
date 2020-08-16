@@ -5,6 +5,7 @@ ruby '2.7.0'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'coffee-rails', '~> 5.0.0'
+gem 'devise', '~> 4.7.2'
 gem 'haml-rails', '~> 2.0'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '>= 0.18', '< 2.0'
