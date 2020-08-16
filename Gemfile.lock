@@ -356,7 +356,7 @@ DEPENDENCIES
   rails (~> 6.0.3, >= 6.0.3.2)
   rspec-rails (~> 4.0.1)
   sass-rails (>= 6)
-  simplecov
+  simplecov (~> 0.18.5)
   solargraph
   spring
   spring-watcher-listen (~> 2.0.0)

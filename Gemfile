@@ -33,6 +33,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.1'
   gem 'solargraph'
   gem 'webdrivers', '~> 3.0'
-  gem 'simplecov'
+end
+
+group :test do
+  gem 'simplecov', '~> 0.18.5', require: false
 end
 
