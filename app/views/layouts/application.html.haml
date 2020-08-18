@@ -10,10 +10,7 @@
   %body
     = render partial: "layouts/header"
     .container-fluid
-      %p.notice
-        = notice
-      %p.alert
-        = alert
+      = render partial: "layouts/feedback"
       = yield
-      = debug(params) if Rails.env.development?
     = render partial: "layouts/footer"
+    = render partial: "layouts/debug_params"
