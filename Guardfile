@@ -1,4 +1,5 @@
 guard :rspec, cmd: "bundle exec rspec" do
+  require "active_support/core_ext/string"
   require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 
@@ -33,4 +34,9 @@ guard :rspec, cmd: "bundle exec rspec" do
   # Capybara features specs
   watch(rails.view_dirs)     { |m| rspec.spec.call("features/#{m[1]}") }
   watch(rails.layouts)       { |m| rspec.spec.call("features/#{m[1]}") }
+
+  # Factories
+  watch(/^spec\/factories\/(.+).rb$/) do |m|
+      rspec.spec.call("models/#{m[1].singularize}")
+  end
 end
