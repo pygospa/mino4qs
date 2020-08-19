@@ -8,9 +8,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
 
     create_table :users do |t|
       ## Database authenticatable
-      t.date :birthday
-      t.column :sex, :sex
-      t.decimal :height, precision: 3, scale: 2
+      t.date :birthday, null: false
+      t.decimal :height, null: false, precision: 3, scale: 2
+      t.column :sex, :sex, null: false
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
