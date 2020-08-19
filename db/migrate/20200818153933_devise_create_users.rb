@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DeviseCreateUsers < ActiveRecord::Migration[6.0]
-  def change
+  def up
     execute <<-SQL
       CREATE TYPE sex AS ENUM ('female', 'male')
     SQL
@@ -11,7 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.date :birthday
-      t.sex :sex
+      t.column :sex, :sex
       t.decimal :height, precision: 3, scale: 2
 
       ## Recoverable
@@ -48,5 +48,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
     add_index :users, :sex
     add_index :users, :confirmation_token,   unique: true
     add_index :users, :unlock_token,         unique: true
+  end
+
+  def down
+    drop_table :users
+    execute <<-SQL
+      DROP TYPE sex;
+    SQL
   end
 end
