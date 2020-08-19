@@ -87,6 +87,9 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
+    date_validator (0.10.0)
+      activemodel (>= 3)
+      activesupport (>= 3)
     devise (4.7.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -344,6 +347,7 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 5.0.0)
+  date_validator (~> 0.10.0)
   devise (~> 4.7.2)
   factory_bot_rails (~> 6.1.0)
   faker (~> 2.13.0)
