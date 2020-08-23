@@ -39,9 +39,23 @@ RSpec.describe 'Account management', type: :system do
     expect(page).to have_content "You have to confirm your email address before continuing"
   end
 
-  scenario 'allows users with confirmed account to log into their account'
+  scenario 'allows users with confirmed account to log into their account' do
+    # given
+    user.skip_confirmation!
+    user.save!
+    expect(user).to be_confirmed
 
-  scenario 'allows users with account to enter'
+    visit '/'
+    within(:xpath, navbar_xpath) { click_on 'Log in'} # TODO: Should this really happen in navbar?
+    expect(page).to have_current_path '/users/sign_in'
+
+    # when
+    sign_in user
+
+    # then
+    expect(page).to have_current_path '/'
+    expect(page).to have_content "Signed in successfully"
+  end
 end
 
 def sign_up(user)
