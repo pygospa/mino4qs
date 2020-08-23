@@ -7,12 +7,8 @@ RSpec.describe 'Account management', type: :system do
   let(:user)         { FactoryBot.build :user }
 
   scenario 'allows new user to sign up for an account' do
-    # given
-    visit '/'
-    within(:xpath, navbar_xpath) { click_on 'Sign up' } # TODO: Should this really happen in navbar?
-    expect(page).to have_current_path '/users/sign_up'
-
     # when
+    visit '/'
     sign_up user
     open_email user.email
     current_email.click_link "Confirm my account"
@@ -27,11 +23,8 @@ RSpec.describe 'Account management', type: :system do
     user.save!
     expect(user).to_not be_confirmed
 
-    visit '/'
-    within(:xpath, navbar_xpath) { click_on 'Log in' } # TODO: Should this really happen in navbar?
-    expect(page).to have_current_path '/users/sign_in'
-
     # when
+    visit '/'
     sign_in user
 
     # then
@@ -45,11 +38,8 @@ RSpec.describe 'Account management', type: :system do
     user.save!
     expect(user).to be_confirmed
 
-    visit '/'
-    within(:xpath, navbar_xpath) { click_on 'Log in'} # TODO: Should this really happen in navbar?
-    expect(page).to have_current_path '/users/sign_in'
-
     # when
+    visit '/'
     sign_in user
 
     # then
@@ -59,6 +49,8 @@ RSpec.describe 'Account management', type: :system do
 end
 
 def sign_up(user)
+  within(:xpath, navbar_xpath) { click_on 'Sign up' } # TODO: Should this really happen in navbar?
+  expect(page).to have_current_path '/users/sign_up'
   fill_in 'user[birthday]', with: user.birthday
   fill_in 'user[height]', with: user.height
   fill_in 'user[sex]', with: user.sex
@@ -69,6 +61,8 @@ def sign_up(user)
 end
 
 def sign_in(user)
+  within(:xpath, navbar_xpath) { click_on 'Log in' } # TODO: Should this really happen in navbar?
+  expect(page).to have_current_path '/users/sign_in'
   fill_in "Email", with: user.email
   fill_in "Password", with: user.password
   click_button "Log in"
