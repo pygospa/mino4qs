@@ -11,7 +11,6 @@ RSpec.describe 'Account management', type: :system do
     visit '/'
     within(:xpath, navbar_xpath) { click_on 'Sign up' } # TODO: Should this really happen in navbar?
     expect(page).to have_current_path '/users/sign_up'
-    expect(page).to have_selector 'form'
 
     # when
     sign_up user
@@ -21,6 +20,23 @@ RSpec.describe 'Account management', type: :system do
     # then
     expect(page).to have_current_path '/users/sign_in'
     expect(page).to have_content "Your email address has been successfully confirmed."
+  end
+
+  scenario 'does not allow users with unconfirmed account to sign in' do
+    # given
+    user.save!
+    expect(user).to_not be_confirmed
+
+    visit '/'
+    within(:xpath, navbar_xpath) { click_on 'Log in' } # TODO: Should this really happen in navbar?
+    expect(page).to have_current_path '/users/sign_in'
+
+    # when
+    sign_in user
+
+    # then
+    expect(page).to have_current_path '/users/sign_in'
+    expect(page).to have_content "You have to confirm your email address before continuing"
   end
 
   scenario 'allows users with confirmed account to log into their account'
