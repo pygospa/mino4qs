@@ -32,8 +32,8 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
 
   # Capybara features specs
-  watch(rails.view_dirs)     { |m| rspec.spec.call("features/#{m[1]}") }
-  watch(rails.layouts)       { |m| rspec.spec.call("features/#{m[1]}") }
+  watch(rails.view_dirs)     { |m| rspec.spec.call("system/#{m[1]}") }
+  watch(rails.layouts)       { |m| rspec.spec.call("system/#{m[1]}") }
 
   # Factories
   watch(/^spec\/factories\/(.+).rb$/) do |m|

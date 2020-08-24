@@ -10,16 +10,12 @@
     =f.text_field :height, autofocus: true, class: 'form-control'
 
   .form-group.row
-    =f.label :sex, class: 'col-form-label'
-    =f.text_field :sex, autofocus: true, class: 'form-control'
-
-  //.form-group.row
-  //  .form-check
-  //    =f.radio_button :sex, class: 'form-check-input', value: "female"
-  //    =f.label :sex_female, 'Female'
-  //  .form-check
-  //    =f.radio_button :sex, class: 'form-check-input', value: "male"
-  //    =f.label :sex_male, 'Male'
+    .form-check
+      =f.radio_button :sex,"female"
+      =f.label :sex_female, 'Female'
+    .form-check
+      =f.radio_button :sex, "male"
+      =f.label :sex_male, 'Male'
 
   .form-group.row
     =f.label :email, class: 'col-form-label'
