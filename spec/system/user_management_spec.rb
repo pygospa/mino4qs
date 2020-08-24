@@ -7,6 +7,7 @@ RSpec.describe 'Account management', type: :system do
   let(:user)         { FactoryBot.build :user }
   let(:successfully_confirmed) { 'Your email address has been successfully confirmed.' }
   let(:successfully_signed_in) { 'Signed in successfully' }
+  let(:successfully_signed_out) { 'Signed out successfully' }
   let(:confirm_your_email)     { 'You have to confirm your email address before continuing' }
   let(:invalid_credentials)    { 'Invalid Email or password' }
   let(:one_more_attempt)       { 'You have one more attempt before your account is locked.' }
@@ -37,7 +38,6 @@ RSpec.describe 'Account management', type: :system do
   scenario 'locks out user after five failed login attempt and sends out unlocking mail' do
     given_confirmed_account_for user
     visit '/'
-
     five_failed_login_attempts_for user
 
     sign_in user
@@ -47,6 +47,15 @@ RSpec.describe 'Account management', type: :system do
 
     sign_in user
     expect(page).to have_content successfully_signed_in
+  end
+
+  scenario 'allows users to log out after they are done' do
+    given_confirmed_account_for user
+    visit '/'
+    sign_in user
+    expect(page).to have_content successfully_signed_in
+    sign_out user
+    expect(page).to have_content successfully_signed_out
   end
 end
 
@@ -105,3 +114,9 @@ def sign_in(user)
   fill_in "Password", with: user.password
   click_button "Log in"
 end
+
+def sign_out(user)
+  within(:xpath, navbar_xpath) { click_on 'Log out' } # TODO: Should this really happen in navbar?
+  click_link "Log out"
+end
+
