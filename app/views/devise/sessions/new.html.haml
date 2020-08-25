@@ -1,16 +1,25 @@
-%h2 Log in
+%h2.my-5 Log in
+
 =form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-group.row
-    =f.label :email, class: 'col-form-label'
-    =f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
-  .form-group.row
-    =f.label :password
-    =f.password_field :password, autocomplete: "current-password", class: 'form-control'
-  - if devise_mapping.rememberable?
-    .form-group.row
-      .form-check
-        =f.check_box :remember_me, class: 'form-check-input'
-        =f.label :remember_me
-  .actions
-    =f.submit "Log in", class: 'btn btn-primary'
+  .row.form-group
+    =f.label :email, class: 'col-md-2 col-form-label'
+    .col-md-10
+      =f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+
+  .row.form-group
+    =f.label :password, class: 'col-md-2 col-form-label'
+    .col-md-10
+      =f.password_field :password, autocomplete: "current-password", class: 'form-control'
+
+  -if devise_mapping.rememberable?
+    .row.form-group
+      .col-md-10.offset-2
+        .form-check
+          =f.check_box :remember_me, class: 'form-check-input'
+          =f.label :remember_me
+
+  .row.actions.mb-4
+    .col-md-10.offset-2
+      =f.submit "Log in", class: 'btn btn-primary'
+
 =render "devise/shared/links"
