@@ -1,5 +1,27 @@
 %header
-  .navbar
-    =link_to 'Sign up', new_user_registration_path
-    =link_to 'Log in', new_user_session_path
-    =link_to 'Log out', destroy_user_session_path, method: 'delete'
+  %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top.justify-content-center
+    %a.navbar-brand.mr-auto.mb-auto.mt-1{ href: root_path }
+      Mino4qs
+
+    .mx-auto.text-center.mt-1
+      %button.navbar-toggler{ type: "button", "data-toggle" => "collapse", "data-target" => "#navbarToggler", "aria-controls" => "navbarToggler", "aria-expanded" => "false", "aria-label" => "Toggle navigation" }
+        %span.navbar-toggler-icon
+
+      .collapse.navbar-collapse#navbarToggler
+        %ul.navbar-nav
+          %li.nav-item
+            %a.nav-link MenuPoint 1
+          %li.nav-item
+            %a.nav-link MenuPoint 2
+          %li.nav-item
+            %a.nav-link MenuPoint 3
+
+    %ul.navbar-nav.ml-auto.mb-auto.mt-1.flex-row
+      -if user_signed_in?
+        %li.nav-item
+          =link_to 'Log out', destroy_user_session_path, class: 'btn btn-outline-danger', method: 'delete'
+      -else
+        %li.nav-item
+          =link_to 'Register', new_user_registration_path, class: 'btn btn-outline-success', method: 'get'
+        %li.nav-item
+          =link_to 'Log in', new_user_session_path, class: 'btn btn-outline-primary ml-2', method: 'get'
